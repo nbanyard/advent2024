@@ -1,13 +1,13 @@
 fn main() {
-    let s1 = Vec::from(list1);
-    let s2 = Vec::from(list2);
+    let mut s1 = Vec::from(list1);
+    let mut s2 = Vec::from(list2);
     s1.sort();
     s2.sort();
-    println!(&s1);
-    println!(&s2);
+    println!("{:?}", &s1);
+    println!("{:?}", &s2);
 }
 
-const list1: [u16] = [
+const list1: [u32; 1000] = [
 80421,
 69841,
 47850,
@@ -1010,7 +1010,7 @@ const list1: [u16] = [
 52525,
 ];
 
-const list2: [u16] = [
+const list2: [u32; 1000] = [
    40193,
    31045,
    64065,
