@@ -2,21 +2,21 @@ use std::collections::HashMap;
 use advent2024::data;
 
 fn main() {
-    let m1 = countItems(data::LIST1);
-    let m2 = countItems(data::LIST2);
+    let m1 = count_items(&data::LIST1);
+    let m2 = count_items(&data::LIST2);
 
     let mut distance: i32 = 0;
     for (item, count1) in m1.iter() {
-        let count2 = m2.unwrap_or(0);
+        let count2 = m2.get(item).unwrap_or(&0);
         distance += item * count1 * count2;
     }
     println!("Distance: {}", distance);
 }
 
-fn countItems(items: &[u32]) -> HashMap<u32, u32> {
+fn count_items(items: &[i32]) -> HashMap<i32, i32> {
     let mut map = HashMap::new();
     for item in items.iter() {
-        map.insert(item, map.get(item).unwrap_or(0) + 1);
+        map.insert(*item, map.get(item).unwrap_or(&0) + 1);
     }
     map
 }
