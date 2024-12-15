@@ -1,9 +1,9 @@
 use std::iter::zip;
-use crate::data;
+use advent2024::data;
 
 fn main() {
-    let mut s1 = Vec::from(data.LIST1);
-    let mut s2 = Vec::from(data.LIST2);
+    let mut s1 = Vec::from(data::LIST1);
+    let mut s2 = Vec::from(data::LIST2);
     s1.sort();
     s2.sort();
 
