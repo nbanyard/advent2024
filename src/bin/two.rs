@@ -1,5 +1,5 @@
-use std::collection::HashMap;
-use crate::data;
+use std::collections::HashMap;
+use advent2024::data;
 
 fn main() {
     let m1 = countItems(data.LIST1);
@@ -7,7 +7,7 @@ fn main() {
 
     let mut distance: i32 = 0;
     for (item, count1) in m1.iter() {
-        count2 = m2.unwrap_or(0);
+        let count2 = m2.unwrap_or(0);
         distance += item * count1 * count2;
     }
     println!("Distance: {}", distance);
