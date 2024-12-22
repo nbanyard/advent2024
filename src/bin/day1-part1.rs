@@ -2,8 +2,7 @@ use std::iter::zip;
 use advent2024::data;
 
 fn main() {
-    let mut s1 = Vec::from(data::LIST1);
-    let mut s2 = Vec::from(data::LIST2);
+    let [mut s1, mut s2] = data::read_columns(include_str!("day1-data.txt"));
     s1.sort();
     s2.sort();
 

@@ -2,8 +2,9 @@ use std::collections::HashMap;
 use advent2024::data;
 
 fn main() {
-    let m1 = count_items(&data::LIST1);
-    let m2 = count_items(&data::LIST2);
+    let [s1, s2] = data::read_columns(include_str!("day1-data.txt"));
+    let m1 = count_items(&s1);
+    let m2 = count_items(&s2);
 
     let mut distance: i32 = 0;
     for (item, count1) in m1.iter() {
