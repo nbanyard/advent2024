@@ -9,7 +9,7 @@ fn main() {
     println!("Rows: {:?}", count);
 }
 
-fn check_without_0(report: &Vec<i32>) -> bool {
+fn check_without_0(report: &[i32]) -> bool {
     let dir = (report[2] - report[1]).signum();
     let mut prev = report[1];
     for level in &report[2..] {
@@ -23,7 +23,7 @@ fn check_without_0(report: &Vec<i32>) -> bool {
     true
 }
 
-fn check_without_1(report: &Vec<i32>) -> bool {
+fn check_without_1(report: &[i32]) -> bool {
     let dir = (report[2] - report[0]).signum();
     let mut prev = report[0];
     for level in &report[2..] {
@@ -37,7 +37,7 @@ fn check_without_1(report: &Vec<i32>) -> bool {
     true
 }
 
-fn check_without_other(report: &Vec<i32>) -> bool {
+fn check_without_other(report: &[i32]) -> bool {
     let dir = (report[1] - report[0]).signum();
     let mut prev = report[0];
     let mut removed_one = false;

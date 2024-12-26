@@ -2,19 +2,19 @@
 #[derive(Clone)]
 #[derive(Copy)]
 enum State {
-    INIT,
+    Init,
     M,
-    MU,
-    MUL,
-    MULLO,
-    MULRO,
+    Mu,
+    Mul,
+    Mullo,
+    Mulro,
     D,
-    DO,
-    DON,
-    DONAP,
-    DONT,
-    DOLB,
-    DONTLB,
+    Do,
+    Don,
+    Donap,
+    Dont,
+    Dolb,
+    Dontlb,
 }
 
 use State::*;
@@ -22,45 +22,45 @@ use State::*;
 fn main() {
     let data = include_str!("day3-data.txt");
 
-    let mut state = INIT;
+    let mut state = Init;
     let mut left_op = 0;
     let mut right_op = 0;
     let mut total = 0;
     let mut dont = false;
     for c in data.chars() {
         match (state, c) {
-            (INIT, 'm') => state = M,
-            (M, 'u') => state = MU,
-            (MU, 'l') => state = MUL,
-            (MUL, '(') => state = MULLO,
-            (MULLO, '0'..='9') => left_op = left_op * 10 + c.to_digit(10).unwrap(),
-            (MULLO, ',') => state = MULRO,
-            (MULRO, '0'..='9') => right_op = right_op * 10 + c.to_digit(10).unwrap(),
-            (MULRO, ')') => {
+            (Init, 'm') => state = M,
+            (M, 'u') => state = Mu,
+            (Mu, 'l') => state = Mul,
+            (Mul, '(') => state = Mullo,
+            (Mullo, '0'..='9') => left_op = left_op * 10 + c.to_digit(10).unwrap(),
+            (Mullo, ',') => state = Mulro,
+            (Mulro, '0'..='9') => right_op = right_op * 10 + c.to_digit(10).unwrap(),
+            (Mulro, ')') => {
                 if !dont {
                     total += left_op * right_op;
                 }
-                state = INIT;
+                state = Init;
                 left_op = 0;
                 right_op = 0;
             },
-            (INIT, 'd') => state = D,
-            (D, 'o') => state = DO,
-            (DO, '(') => state = DOLB,
-            (DO, 'n') => state = DON,
-            (DOLB, ')') => {
-                state = INIT;
+            (Init, 'd') => state = D,
+            (D, 'o') => state = Do,
+            (Do, '(') => state = Dolb,
+            (Do, 'n') => state = Don,
+            (Dolb, ')') => {
+                state = Init;
                 dont = false;
             },
-            (DON, '\'') => state = DONAP,
-            (DONAP, 't') => state = DONT,
-            (DONT, '(') => state = DONTLB,
-            (DONTLB, ')') => {
-                state = INIT;
+            (Don, '\'') => state = Donap,
+            (Donap, 't') => state = Dont,
+            (Dont, '(') => state = Dontlb,
+            (Dontlb, ')') => {
+                state = Init;
                 dont = true;
             },
             _ => {
-                state = INIT;
+                state = Init;
                 left_op = 0;
                 right_op = 0;
             },
