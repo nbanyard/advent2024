@@ -10,9 +10,11 @@ pub fn read_columns(data: &str) -> [Vec<i32>; 2] {
 }
 
 pub fn read_rows(data: &str) -> Vec<Vec<i32>> {
-    data.lines().map(|line| {
-        line.split_whitespace().map(|word| {
-            word.parse().expect("word should be a number")
-        }).collect()
-    }).collect()
+    data.lines()
+        .map(|line| {
+            line.split_whitespace()
+                .map(|word| word.parse().expect("word should be a number"))
+                .collect()
+        })
+        .collect()
 }

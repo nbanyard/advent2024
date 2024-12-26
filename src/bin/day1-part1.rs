@@ -1,5 +1,5 @@
-use std::iter::zip;
 use advent2024::data;
+use std::iter::zip;
 
 fn main() {
     let [mut s1, mut s2] = data::read_columns(include_str!("day1-data.txt"));

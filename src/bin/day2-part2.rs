@@ -2,10 +2,13 @@ use advent2024::data;
 
 fn main() {
     let reports = data::read_rows(include_str!("day2-data.txt"));
-    let count = reports.into_iter().filter(|report| {
-        check_without_0(report) || check_without_1(report) || check_without_other(report)
-    }).count();
-    
+    let count = reports
+        .into_iter()
+        .filter(|report| {
+            check_without_0(report) || check_without_1(report) || check_without_other(report)
+        })
+        .count();
+
     println!("Rows: {:?}", count);
 }
 
@@ -47,7 +50,7 @@ fn check_without_other(report: &[i32]) -> bool {
             if !removed_one {
                 removed_one = true;
             } else {
-                return false
+                return false;
             }
         } else {
             prev = *level;

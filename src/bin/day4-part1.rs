@@ -1,12 +1,20 @@
 const DIRECTIONS: [(isize, isize); 8] = [
-    (-1, -1), (0, -1), (1, -1),
-    (-1,  0),          (1,  0),
-    (-1,  1), (0,  1), (1,  1),
+    (-1, -1),
+    (0, -1),
+    (1, -1),
+    (-1, 0),
+    (1, 0),
+    (-1, 1),
+    (0, 1),
+    (1, 1),
 ];
 const WORD: &str = "XMAS";
 
 fn main() {
-    let data: Vec<Vec<char>> = include_str!("day4-data.txt").lines().map(|line| line.chars().collect()).collect();
+    let data: Vec<Vec<char>> = include_str!("day4-data.txt")
+        .lines()
+        .map(|line| line.chars().collect())
+        .collect();
     let lines = data.len() as isize;
     let columns = data[0].len() as isize;
     let mut words: isize = 0;

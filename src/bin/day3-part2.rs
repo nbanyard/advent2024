@@ -1,6 +1,4 @@
-
-#[derive(Clone)]
-#[derive(Copy)]
+#[derive(Clone, Copy)]
 enum State {
     Init,
     M,
@@ -43,7 +41,7 @@ fn main() {
                 state = Init;
                 left_op = 0;
                 right_op = 0;
-            },
+            }
             (Init, 'd') => state = D,
             (D, 'o') => state = Do,
             (Do, '(') => state = Dolb,
@@ -51,19 +49,19 @@ fn main() {
             (Dolb, ')') => {
                 state = Init;
                 dont = false;
-            },
+            }
             (Don, '\'') => state = Donap,
             (Donap, 't') => state = Dont,
             (Dont, '(') => state = Dontlb,
             (Dontlb, ')') => {
                 state = Init;
                 dont = true;
-            },
+            }
             _ => {
                 state = Init;
                 left_op = 0;
                 right_op = 0;
-            },
+            }
         }
     }
 

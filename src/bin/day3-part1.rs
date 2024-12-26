@@ -1,4 +1,3 @@
-
 const M: i32 = 0;
 const U: i32 = 1;
 const L: i32 = 2;
@@ -27,7 +26,7 @@ fn main() {
                 state = M;
                 left_op = 0;
                 right_op = 0;
-            },
+            }
             _ => {
                 state = M;
                 left_op = 0;

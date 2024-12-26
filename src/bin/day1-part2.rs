@@ -1,5 +1,5 @@
-use std::collections::HashMap;
 use advent2024::data;
+use std::collections::HashMap;
 
 fn main() {
     let [s1, s2] = data::read_columns(include_str!("day1-data.txt"));
