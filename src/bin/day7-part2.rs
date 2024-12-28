@@ -29,19 +29,25 @@ fn parse_problems(raw: &str) -> Vec<(i64, Vec<i64>)> {
         .collect()
 }
 
+const BASE: usize = 3;
+
 fn is_solvable(problem: &(i64, Vec<i64>)) -> bool {
     let (target, operands) = problem;
     let num_operators = operands.len() - 1;
-    for solution in 0..(1 << num_operators) {
+    for solution in 0..(BASE.pow(num_operators as u32)) {
         let mut sum = operands[0];
         let mut operators = solution;
         for operator in 0..num_operators {
-            if operators & 1 == 0 {
+            if operators % BASE == 0 {
                 sum += operands[operator + 1];
-            } else {
+            } else if operators % BASE == 1 {
                 sum *= operands[operator + 1];
+            } else {
+                sum = format!("{}{}", sum, operands[operator + 1])
+                    .parse()
+                    .unwrap();
             }
-            operators >>= 1;
+            operators /= BASE;
         }
         if sum == *target {
             return true;
