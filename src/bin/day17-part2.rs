@@ -12,11 +12,20 @@ fn main() {
     };
 }
 
-fn run(bootstrap: &str) -> Result<String, Error> {
+fn run(bootstrap: &str) -> Result<isize, Error> {
     let mut computer = Computer::load(bootstrap)?;
-    computer.run()?;
-    println!("{:?}", computer);
-    Ok(computer.output())
+    let mut a: isize = 0;
+    loop {
+        computer.reset(a);
+        computer.run()?;
+        if computer.program == computer.output {
+            return Ok(a);
+        }
+        if a % 100000 == 0 {
+            println!("{}: {:?}", a, computer.output);
+        }
+        a += 1;
+    }
 }
 
 #[derive(Debug)]
@@ -89,6 +98,14 @@ impl Computer {
         Ok(result)
     }
 
+    fn reset(&mut self, a: isize) {
+        self.registers[0] = a;
+        self.registers[1] = 0;
+        self.registers[2] = 0;
+        self.pc = 0;
+        self.output.truncate(0);
+    }
+
     fn run(&mut self) -> Result<(), Error> {
         while self.pc < self.program.len() {
             let opcode = self.program[self.pc];
@@ -149,17 +166,6 @@ impl Computer {
             return Ok(self.registers[operand as usize - 4]);
         }
         Err(Error::NotImplemented)
-    }
-
-    fn output(&self) -> String {
-        format!(
-            "{:?}",
-            self.output
-                .iter()
-                .map(|u| u.to_string())
-                .collect::<Vec<String>>()
-                .join(",")
-        )
     }
 }
 

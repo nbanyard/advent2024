@@ -1,0 +1,14 @@
+Register A: 64751475
+Register B: 0
+Register C: 0
+
+Program: 2,4,1,2,7,5,4,5,1,3,5,5,0,3,3,0
+
+// bst 4: A & 7 -> B
+// bxl 2: B ^ 2 -> B
+// cdv 5: A >> B -> C
+// bxc 5: B ^ C -> B
+// bxl 3: B ^ 3 -> B
+// out 5: OUT B
+// adv 3: A >> 3 -> A
+// jnz 0: JNZ 0
